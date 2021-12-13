@@ -1549,6 +1549,17 @@ PT {
 		ctx['STRUM.4'] = PTStrumOp.new(server, 4);
 	}
 
+	// TODO: PTCrowOp is not a thing yet.
+	initCrow { |ctx|
+		// TODO:
+		//ctx['CROW.IN.1'] = PTCrowOp.new("CROW.IN.1", server, 0);
+		//ctx['CROW.IN.2'] = PTCrowOp.new("CROW.IN.1", server, 0);
+		ctx['CROW.OUT.1'] = PTCrowOp.new("CROW.OUT.1");
+		ctx['CROW.OUT.2'] = PTCrowOp.new("CROW.OUT.2");
+		ctx['CROW.OUT.3'] = PTCrowOp.new("CROW.OUT.3");
+		ctx['CROW.OUT.4'] = PTCrowOp.new("CROW.OUT.4");
+	}
+
 	init {
 		this.reset;
 		ctx = ();
