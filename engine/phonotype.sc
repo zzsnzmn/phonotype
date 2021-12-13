@@ -363,6 +363,9 @@ PTParser {
 		^(end -> newNode);
 	}
 
+	parseCrow { |preTokens, tokens, ctx|
+	}
+
 	parse { |str, context=nil|
 		var ctx = context ? (callSite: nil);
 		var s = if ( (str == nil) || (str == ""), {"IT"}, {str});
@@ -390,6 +393,11 @@ PTParser {
 			}
 			{preTokens[0].beginsWith("MIDI") && ctx.includesKey(preTokens[0].asSymbol)} {
 				a = this.parseMidi(preTokens, tokens, ctx);
+				end = a.key;
+			}
+			// TODO: implement parseCrow
+			{preTokens[0].beginsWith("CROW") && ctx.includesKey(preTokens[0].asSymbol)} {
+				a = this.parseCrow(preTokens, tokens, ctx);
 				end = a.key;
 			}
 			{true} {
@@ -1566,6 +1574,7 @@ PT {
 		this.initBusses(ctx);
 		this.initBeats(ctx);
 		this.initPoly(ctx);
+		this.initCrow(ctx);
 		ctx['PAUSE'] = PTPauseOp.new(server);
 		if (out_proxy == nil, {
 			out_proxy = NodeProxy.new(server, \audio, 2);
